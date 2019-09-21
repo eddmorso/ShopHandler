@@ -1,13 +1,12 @@
-import com.mysql.jdbc.Driver;
-
 import java.sql.*;
-import com.mysql.jdbc.*;
 import java.util.List;
 
 public abstract class Shop {
 
     private Connection connection;
     private Statement statement;
+    private List<Category> categories;
+    private List<Product> products;
 
     public Shop(){
         try {
@@ -26,8 +25,6 @@ public abstract class Shop {
     public Statement getStatement() {
         return statement;
     }
-
-    private List<Category> categories;
 
     public abstract List<Product> getAllProductsFromDB() throws SQLException;
 

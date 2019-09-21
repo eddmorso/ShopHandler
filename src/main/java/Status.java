@@ -1,2 +1,6 @@
-public class Status {
+public enum Status {
+    AVAILABLE,
+    ABSENT,
+    EXPECTED
 }
+
