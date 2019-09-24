@@ -1,0 +1,1 @@
+Simple app for managging database with shops.
