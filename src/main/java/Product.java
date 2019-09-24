@@ -2,10 +2,10 @@ public class Product {
 
     private String title;
     private int price;
-    private String status;
+    private Status status;
     private Category category;
 
-    public Product(String title, Category category, String status, int price){
+    public Product(String title, Category category, Status status, int price){
         this.title = title;
         this.price = price;
         this.status = status;
@@ -28,11 +28,11 @@ public class Product {
         this.price = price;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

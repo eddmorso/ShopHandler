@@ -16,22 +16,22 @@ CREATE TABLE tech_shop(
 	Price int
 );
 
-INSERT INTO tech_shop (Product_title, Category, Availability, Price) VALUES ('XPeria Z', 'Smartphones', 'Available', 600);
-INSERT INTO tech_shop (Product_title, Category, Availability, Price) VALUES ('IPhone 2', 'Smartphones', 'Expected', 800);
-INSERT INTO tech_shop (Product_title, Category, Availability, Price) VALUES ('Xiaomi 3', 'Smartphones', 'Absent', 300);
+INSERT INTO tech_shop (Product_title, Category, Availability, Price) VALUES ('XPeria Z', 'Smartphones', 'AVAILABLE', 600);
+INSERT INTO tech_shop (Product_title, Category, Availability, Price) VALUES ('IPhone 2', 'Smartphones', 'EXPECTED', 800);
+INSERT INTO tech_shop (Product_title, Category, Availability, Price) VALUES ('Xiaomi 3', 'Smartphones', 'ABSENT', 300);
 
-INSERT INTO tech_shop (Product_title, Category, Availability, Price) VALUES ('IPad', 'Tablets', 'Available', 1200);
-INSERT INTO tech_shop (Product_title, Category, Availability, Price) VALUES ('Surface', 'Tablets', 'Expected', 1189);
-INSERT INTO tech_shop (Product_title, Category, Availability, Price) VALUES ('Sumsung Tab', 'Tablets', 'Absent', 1098);
+INSERT INTO tech_shop (Product_title, Category, Availability, Price) VALUES ('IPad', 'Tablets', 'AVAILABLE', 1200);
+INSERT INTO tech_shop (Product_title, Category, Availability, Price) VALUES ('Surface', 'Tablets', 'EXPECTED', 1189);
+INSERT INTO tech_shop (Product_title, Category, Availability, Price) VALUES ('Sumsung Tab', 'Tablets', 'ABSENT', 1098);
 
-INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('Three Musketeers', 'Advanture', 'Available', 200);
-INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('Moby Dick', 'Advanture', 'Expected', 189);
-INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('Tresure Island', 'Advanture', 'Absent', 98);
+INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('Three Musketeers', 'Advanture', 'AVAILABLE', 200);
+INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('Moby Dick', 'Advanture', 'EXPECTED', 189);
+INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('Tresure Island', 'Advanture', 'ABSENT', 98);
 
-INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('Sherlock Holmes', 'Detective', 'Available', 132);
-INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('The Woman in white', 'Detective', 'Expected', 186);
-INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('The murder at the Vicarage', 'Detective', 'Absent', 198);
+INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('Sherlock Holmes', 'Detective', 'AVAILABLE', 132);
+INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('The Woman in white', 'Detective', 'EXPECTED', 186);
+INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('The murder at the Vicarage', 'Detective', 'ABSENT', 198);
 
-INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('Clean code', 'Programming', 'Available', 232);
-INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('Thinking in Java', 'Programming', 'Expected', 386);
-INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('Effective Java', 'Programming', 'Absent', 498);
+INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('Clean code', 'Programming', 'AVAILABLE', 232);
+INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('Thinking in Java', 'Programming', 'EXPECTED', 386);
+INSERT INTO book_shop (Product_title, Category, Availability, Price) VALUES ('Effective Java', 'Programming', 'ABSENT', 498);

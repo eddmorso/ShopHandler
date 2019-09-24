@@ -8,9 +8,9 @@ public class Main {
         TechShop techShop = TechShop.getInstance();
         BookShop bookShop = BookShop.getInstance();
 
-        List<Product> products = Arrays.asList(new Product("IPhone 5", new Category("Smartphones"), "Expected", 900),
-                new Product("IPhone 7", new Category("Smartphones"), "Expected", 10000));
-        techShop.addProducts(products);
-        techShop.getProducts().forEach(System.out :: println);
+        List<Product> products = Arrays.asList(new Product("IPhone 5", new Category("Smartphones"), Status.EXPECTED, 900),
+                new Product("IPhone 7", new Category("Smartphones"), Status.EXPECTED, 10000));
+        techShop.addProductsToDB(products);
+        techShop.getAllProductsFromDB().forEach(System.out :: println);
     }
 }

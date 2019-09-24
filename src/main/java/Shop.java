@@ -41,7 +41,7 @@ public abstract class Shop {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                products.add(new Product(resultSet.getString(1), new Category(resultSet.getString(2)), resultSet.getString(3), resultSet.getInt(4)));
+                products.add(new Product(resultSet.getString(1), new Category(resultSet.getString(2)), Status.valueOf(resultSet.getString(3).toUpperCase()), resultSet.getInt(4)));
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -55,7 +55,7 @@ public abstract class Shop {
             PreparedStatement preparedStatement = connection.prepareStatement(statement);
             preparedStatement.setString(1, product.getTitle());
             preparedStatement.setString(2, product.getCategory().getName());
-            preparedStatement.setString(3, product.getStatus());
+            preparedStatement.setString(3, product.getStatus().toString());
             preparedStatement.setInt(4, product.getPrice());
 
             preparedStatement.executeUpdate();
