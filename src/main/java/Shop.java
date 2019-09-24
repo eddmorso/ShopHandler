@@ -43,6 +43,7 @@ public abstract class Shop {
             while (resultSet.next()) {
                 products.add(new Product(resultSet.getString(1), new Category(resultSet.getString(2)), Status.valueOf(resultSet.getString(3).toUpperCase()), resultSet.getInt(4)));
             }
+            preparedStatement.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -63,6 +64,7 @@ public abstract class Shop {
                 res.add(new Product(resultSet.getString(1), new Category(resultSet.getString(2)),
                         Status.valueOf(resultSet.getString(3)), resultSet.getInt(4)));
             }
+            preparedStatement.close();
          }catch (SQLException e){
             e.printStackTrace();
         }
@@ -84,6 +86,7 @@ public abstract class Shop {
             preparedStatement.setInt(4, product.getPrice());
 
             preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -103,6 +106,7 @@ public abstract class Shop {
             preparedStatement.setString(2, product.getTitle());
 
             preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -122,6 +126,7 @@ public abstract class Shop {
             preparedStatement.setString(2, product.getTitle());
 
             preparedStatement.executeUpdate();
+            preparedStatement.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -142,5 +147,13 @@ public abstract class Shop {
             categories.add(product.getCategory());
         }
         return categories;
+    }
+
+    public void closeConnection(){
+        try {
+            connection.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }
