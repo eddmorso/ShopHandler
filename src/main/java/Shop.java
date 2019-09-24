@@ -8,22 +8,25 @@ public abstract class Shop extends Thread {
     private List<Category> categories;
     private List<Product> products;
     private String tableName;
-    private final String URL = "jdbc:mysql://localhost:3306/shop_handler";
-    private final String USER = "test";
-    private final String PASSWORD = "test";
+    private String url = "jdbc:mysql://localhost:3306/shop_handler";
+    private String user = "test";
+    private String password = "test";
     private final String SELECT_ALL = "SELECT * FROM $table";
     private final String SELECT_PRODUCT = "SELECT * FROM $table WHERE Product_title = ?";
     private final String INSERT_INTO = "INSERT INTO $table (Product_title, Category, Availability, Price) VALUES (?,?,?,?)";
     private final String UPDATE_PRICE = "UPDATE $table SET Price = ? WHERE Product_title = ?";
     private final String UPDATE_STATUS = "UPDATE $table SET Availability = ? WHERE Product_title = ?";
 
-    public Shop(String tableName){
+    public Shop(String tableName, String url, String user, String password){
         this.tableName = tableName;
+        this.url = url;
+        this.user = user;
+        this.password = password;
         categories = new ArrayList<>();
         products = new ArrayList<>();
 
         try {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            connection = DriverManager.getConnection(url, user, password);
             if (!connection.isClosed()){
                 System.out.println("Connection established");
             }

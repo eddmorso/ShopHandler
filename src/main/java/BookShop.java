@@ -6,14 +6,14 @@ public class BookShop extends Shop {
 
     private static BookShop bookShop;
 
-    private BookShop(){
-        super("book_shop");
+    private BookShop(String url, String user, String password){
+        super("book_shop", url, user, password);
         getProductsFromDB();
     }
 
-    public static BookShop getInstance() {
+    public static BookShop getInstance(String url, String user, String password) {
         if (bookShop == null) {
-            bookShop = new BookShop();
+            bookShop = new BookShop(url, user, password);
         }
         return bookShop;
     }

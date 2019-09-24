@@ -7,14 +7,14 @@ public class TechShop extends Shop {
 
     private static TechShop techShop;
 
-    private TechShop(){
-        super("tech_shop");
+    private TechShop(String url, String user, String password){
+        super("tech_shop", url, user, password);
         getProductsFromDB();
     }
 
-    public static TechShop getInstance() {
+    public static TechShop getInstance(String url, String user, String password) {
         if (techShop == null){
-            techShop = new TechShop();
+            techShop = new TechShop(url, user, password);
         }
         return techShop;
     }
