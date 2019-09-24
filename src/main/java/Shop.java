@@ -11,6 +11,7 @@ public abstract class Shop {
     private final String USER = "test";
     private final String PASSWORD = "test";
     private final String SELECT_ALL = "SELECT * FROM table";
+    private final String SELECT_PRODUCT = "SELECT * FROM table WHERE Product_title = ?";
     private final String INSERT_INTO = "INSERT INTO table (Product_title, Category, Availability, Price) VALUES (?,?,?,?)";
     private final String UPDATE_PRICE = "UPDATE table SET Price = ? WHERE Product_title = ?";
     private final String UPDATE_STATUS = "UPDATE table SET Availability = ? WHERE Product_title = ?";
@@ -30,9 +31,8 @@ public abstract class Shop {
         }
     }
 
-    public List<Product> getAllProductsFromDB(){
+    public List<Product> getProductsFromDB(){
         products.clear();
-        categories.clear();
 
         String statement = SELECT_ALL.replaceAll("table", tableName);
 
@@ -47,6 +47,31 @@ public abstract class Shop {
             e.printStackTrace();
         }
         return products;
+    }
+
+    public List<Product> getProductsFromDB(String title){
+        String statement = SELECT_PRODUCT.replaceAll("table", tableName);
+        List<Product> res = new ArrayList<>();
+
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(statement);
+            preparedStatement.setString(1, title);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                res.add(new Product(resultSet.getString(1), new Category(resultSet.getString(2)),
+                        Status.valueOf(resultSet.getString(3)), resultSet.getInt(4)));
+            }
+         }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return res;
+    }
+
+    public List<Product> getProductsFromDB(Product product){
+        return getProductsFromDB(product.getTitle());
     }
 
     public void addProductsToDB(Product product) {
@@ -89,11 +114,11 @@ public abstract class Shop {
         }
     }
 
-    public void setStatusInDB(String status, Product product){
+    public void setStatusInDB(Status status, Product product){
         String statement = UPDATE_STATUS.replaceAll("table", tableName);
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(statement);
-            preparedStatement.setString(1, status);
+            preparedStatement.setString(1, status.toString());
             preparedStatement.setString(2, product.getTitle());
 
             preparedStatement.executeUpdate();
@@ -102,27 +127,20 @@ public abstract class Shop {
         }
     }
 
-    public void setStatusInDB(String status, List<Product> products){
+    public void setStatusInDB(Status status, List<Product> products){
         for (Product product : products){
             setStatusInDB(status, product);
         }
     }
 
-//    public List<Category> getCategories() {
-//        if (products.isEmpty()){
-//            getAllProductsFromDB(tableName);
-//        }
-//        for (Product product : products){
-//            categories.add(product.getCategory());
-//        }
-//        return categories;
-//    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public List<Category> getCategories() {
+        categories.clear();
+        if (products.isEmpty()){
+            getProductsFromDB();
+        }
+        for (Product product : products){
+            categories.add(product.getCategory());
+        }
+        return categories;
     }
 }

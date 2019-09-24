@@ -1,12 +1,10 @@
-import java.util.List;
-
 public class BookShop extends Shop {
 
     private static BookShop bookShop;
 
     private BookShop(){
         super("book_shop");
-        getAllProductsFromDB();
+        getProductsFromDB();
     }
 
     public static BookShop getInstance() {
