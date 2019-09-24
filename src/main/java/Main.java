@@ -17,13 +17,13 @@ public class Main {
         try {
             techShop.join();
             bookShop.join();
+
+            System.out.println("Job is done");
         }catch (InterruptedException e){
             e.printStackTrace();
+        } finally {
+            techShop.closeConnection();
+            bookShop.closeConnection();
         }
-
-        System.out.println("Job is done");
-
-        techShop.closeConnection();
-        bookShop.closeConnection();
     }
 }
