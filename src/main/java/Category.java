@@ -5,6 +5,10 @@ public class Category {
     private String name;
     private List<Product> products;
 
+    public Category (String name){
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
@@ -19,5 +23,25 @@ public class Category {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Category){
+            Category category = (Category) obj;
+
+            return name.equals(category.name);
+        }
+        return false;
     }
 }

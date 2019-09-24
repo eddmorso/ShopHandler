@@ -1,13 +1,18 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TechShop extends Shop {
 
     private static TechShop techShop;
+    private final String TABLE_NAME = "tech_shop";
 
     private TechShop(){
         super();
+
+        getAllProductsFromDB(TABLE_NAME);
+        getCategories(TABLE_NAME);
     }
 
     public static TechShop getInstance() {
@@ -16,22 +21,20 @@ public class TechShop extends Shop {
         }
         return techShop;
     }
-    
-    @Override
-    public void addProductsToDB(List<Product> products) {
 
+    @Override
+    public List<Product> getProducts() {
+        return getAllProductsFromDB(TABLE_NAME);
     }
 
     @Override
-    public void addProductsToDB(Product product) {
-
+    public void addProducts(Product product) {
+        super.addProductsToDB(TABLE_NAME, product);
     }
 
     @Override
-    public List<Product> getAllProductsFromDB() throws SQLException {
-        ResultSet resultSet = getStatement().executeQuery("SELECT * FROM TechShop");
-
-        return null;
+    public void addProducts(List<Product> products) {
+        super.addProductsToDB(TABLE_NAME, products);
     }
 
     @Override

@@ -3,6 +3,7 @@ import java.util.List;
 public class BookShop extends Shop {
 
     private static BookShop bookShop;
+    public final String TABLE_NAME = "book_shop";
 
     private BookShop(){
         super();
@@ -16,18 +17,18 @@ public class BookShop extends Shop {
     }
 
     @Override
-    public void addProductsToDB(List<Product> products) {
-
+    public List<Product> getProducts() {
+        return getAllProductsFromDB(TABLE_NAME);
     }
 
     @Override
-    public void addProductsToDB(Product product) {
-
+    public void addProducts(Product product) {
+        super.addProductsToDB(TABLE_NAME, product);
     }
 
     @Override
-    public List<Product> getAllProductsFromDB() {
-        return null;
+    public void addProducts(List<Product> products) {
+        super.addProductsToDB(TABLE_NAME, products);
     }
 
     @Override
