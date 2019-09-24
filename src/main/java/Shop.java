@@ -2,7 +2,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Shop {
+public abstract class Shop extends Thread {
+
     private Connection connection;
     private List<Category> categories;
     private List<Product> products;
@@ -83,7 +84,7 @@ public abstract class Shop {
             preparedStatement.setString(1, product.getTitle());
             preparedStatement.setString(2, product.getCategory().getName());
             preparedStatement.setString(3, product.getStatus().toString());
-            preparedStatement.setInt(4, product.getPrice());
+            preparedStatement.setDouble(4, product.getPrice());
 
             preparedStatement.executeUpdate();
             preparedStatement.close();
@@ -98,11 +99,11 @@ public abstract class Shop {
         }
     }
 
-    public void setPriceInDB(int price, Product product) {
+    public void setPriceInDB(double price, Product product) {
         String statement = UPDATE_PRICE.replaceAll("table", tableName);
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(statement);
-            preparedStatement.setInt(1, price);
+            preparedStatement.setDouble(1, price);
             preparedStatement.setString(2, product.getTitle());
 
             preparedStatement.executeUpdate();
@@ -112,7 +113,7 @@ public abstract class Shop {
         }
     }
 
-    public void setPriceInDB(int price, List<Product> products){
+    public void setPriceInDB(double price, List<Product> products){
         for (Product product : products){
             setPriceInDB(price, product);
         }

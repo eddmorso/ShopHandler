@@ -1,11 +1,11 @@
 public class Product {
 
     private String title;
-    private int price;
+    private double price;
     private Status status;
     private Category category;
 
-    public Product(String title, Category category, Status status, int price){
+    public Product(String title, Category category, Status status, double price){
         this.title = title;
         this.price = price;
         this.status = status;
@@ -24,11 +24,11 @@ public class Product {
         this.title = title;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -63,7 +63,7 @@ public class Product {
         if (obj instanceof Product){
             Product product = (Product) obj;
 
-            return title.equals(product.title);
+            return title.equalsIgnoreCase(product.title);
         }
         return false;
     }

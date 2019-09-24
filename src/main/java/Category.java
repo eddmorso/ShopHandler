@@ -40,7 +40,7 @@ public class Category {
         if (obj instanceof Category){
             Category category = (Category) obj;
 
-            return name.equals(category.name);
+            return name.equalsIgnoreCase(category.name);
         }
         return false;
     }
