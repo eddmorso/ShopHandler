@@ -5,12 +5,22 @@ public class Main {
         BookShop bookShop = BookShop.getInstance();
 
         techShop.start();
+
         try {
             TechShop.sleep(10000);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+        bookShop.start();
+
+        try {
+            techShop.join();
+            bookShop.join();
         }catch (InterruptedException e){
             e.printStackTrace();
         }
-        bookShop.start();
-        System.out.println("Job's done");
+
+        System.out.println("Job is done");
     }
 }
