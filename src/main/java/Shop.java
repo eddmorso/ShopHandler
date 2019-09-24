@@ -11,11 +11,11 @@ public abstract class Shop extends Thread {
     private final String URL = "jdbc:mysql://localhost:3306/shop_handler";
     private final String USER = "test";
     private final String PASSWORD = "test";
-    private final String SELECT_ALL = "SELECT * FROM $table";
-    private final String SELECT_PRODUCT = "SELECT * FROM table WHERE Product_title = ?";
-    private final String INSERT_INTO = "INSERT INTO $table (Product_title, Category, Availability, Price) VALUES (?,?,?,?)";
-    private final String UPDATE_PRICE = "UPDATE $table SET Price = ? WHERE Product_title = ?";
-    private final String UPDATE_STATUS = "UPDATE $table SET Availability = ? WHERE Product_title = ?";
+    private final String SELECT_ALL = "SELECT * FROM #table";
+    private final String SELECT_PRODUCT = "SELECT * FROM #table WHERE Product_title = ?";
+    private final String INSERT_INTO = "INSERT INTO #table (Product_title, Category, Availability, Price) VALUES (?,?,?,?)";
+    private final String UPDATE_PRICE = "UPDATE #table SET Price = ? WHERE Product_title = ?";
+    private final String UPDATE_STATUS = "UPDATE #table SET Availability = ? WHERE Product_title = ?";
 
     public Shop(String tableName){
         this.tableName = tableName;
@@ -35,7 +35,7 @@ public abstract class Shop extends Thread {
     public List<Product> getProductsFromDB(){
         products.clear();
 
-        String statement = SELECT_ALL.replaceAll("$table", tableName);
+        String statement = SELECT_ALL.replaceAll("#table", tableName);
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(statement);
@@ -52,7 +52,7 @@ public abstract class Shop extends Thread {
     }
 
     public List<Product> getProductsFromDB(String title){
-        String statement = SELECT_PRODUCT.replaceAll("$table", tableName);
+        String statement = SELECT_PRODUCT.replaceAll("#table", tableName);
         List<Product> res = new ArrayList<>();
 
         try{
@@ -78,7 +78,7 @@ public abstract class Shop extends Thread {
     }
 
     public void addProductsToDB(Product product) {
-        String statement = INSERT_INTO.replaceAll("$table", tableName);
+        String statement = INSERT_INTO.replaceAll("#table", tableName);
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(statement);
             preparedStatement.setString(1, product.getTitle());
@@ -100,7 +100,7 @@ public abstract class Shop extends Thread {
     }
 
     public void setPriceInDB(double price, Product product) {
-        String statement = UPDATE_PRICE.replaceAll("$table", tableName);
+        String statement = UPDATE_PRICE.replaceAll("#table", tableName);
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(statement);
             preparedStatement.setDouble(1, price);
@@ -120,7 +120,7 @@ public abstract class Shop extends Thread {
     }
 
     public void setStatusInDB(Status status, Product product){
-        String statement = UPDATE_STATUS.replaceAll("$table", tableName);
+        String statement = UPDATE_STATUS.replaceAll("#table", tableName);
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(statement);
             preparedStatement.setString(1, status.toString());
