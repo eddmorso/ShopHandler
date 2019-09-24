@@ -1,17 +1,8 @@
 public class Product {
 
-    private Category category;
     private String title;
     private double price;
     private Status status;
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 
     public String getTitle() {
         return title;

@@ -10,7 +10,7 @@ public abstract class Shop {
 
     public Shop(){
         try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ShopHandler", "test", "test");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/shop_handler", "test", "test");
             statement = connection.createStatement();
 
         }catch (SQLException e){
@@ -28,23 +28,23 @@ public abstract class Shop {
 
     public abstract List<Product> getAllProductsFromDB() throws SQLException;
 
-    public abstract void addProductsToDB(Product product);
+    public abstract void addProductsToDB(Product product) throws SQLException;
 
-    public abstract void addProductsToDB(List<Product> products);
+    public abstract void addProductsToDB(List<Product> products) throws SQLException;
 
-    public abstract void setPriceOfProducts(Product product);
+    public abstract void setPriceOfProducts(Product product) throws SQLException;
 
-    public abstract void setPriceOfProducts(List<Product> products);
+    public abstract void setPriceOfProducts(List<Product> products) throws SQLException;
 
-    public abstract void setStatusOfProducts(Product product);
+    public abstract void setStatusOfProducts(Product product) throws SQLException;
 
-    public abstract void setStatusOfProducts(List<Product> products);
+    public abstract void setStatusOfProducts(List<Product> products) throws SQLException;
 
-    public void setCategories(List<Category> categories) {
+    public void setCategories(List<Category> categories) throws SQLException {
         this.categories = categories;
     }
 
-    public List<Category> getCategories() {
+    public List<Category> getCategories() throws SQLException {
         return categories;
     }
 }
