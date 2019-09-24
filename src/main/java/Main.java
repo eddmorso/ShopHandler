@@ -19,7 +19,7 @@ public class Main {
             bookShop.join();
 
             System.out.println("Job is done");
-        }catch (InterruptedException e){
+        } catch (InterruptedException e){
             e.printStackTrace();
         } finally {
             techShop.closeConnection();
